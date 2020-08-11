@@ -1,0 +1,69 @@
+# E-Food
+
+> Food E-Commerce Website where users can place orders and the admin can prepare and deliver them accordingly.<br />
+
+# Overview Of The Website
+
+<p align="center">Home Page</p>
+<p align="center">
+ <img src="./media/1.png">
+ <img src="./media/4.png">
+</p>
+
+<p align="center">Dish Detail Page</p>
+<p align="center">
+ <img src="./media/5.png">
+</p>
+
+<p align="center">Login</p>
+<p align="center">
+ <img src="./media/6.png">
+</p>
+
+<p align="center">SignUp</p>
+<p align="center">
+ <img src="./media/7.png">
+</p>
+
+<p align="center">Buyer Login Navbar</p>
+<p align="center">
+ <img src="./media/3.png">
+</p>
+
+<p align="center">Buyer Cart View</p>
+<p align="center">
+ <img src="./media/8.png">
+</p>
+
+<p align="center">Buyer Order View</p>
+<p align="center">
+ <img src="./media/9.png">
+</p>
+
+<p align="center">Admin Login Navbar</p>
+<p align="center">
+ <img src="./media/2.png">
+</p>
+
+<p align="center">Admin Dashboard</p>
+<p align="center">
+ <img src="./media/10.png">
+</p>
+
+<p align="center">Admin Completed Orders</p>
+<p align="center">
+ <img src="./media/11.png">
+</p>
+
+<p align="center">Admin Pending Orders</p>
+<p align="center">
+ <img src="./media/12.png">
+</p>
+
+> Clone the repository.<br>
+> Install django and other required dependencies.Also make sure to have installed Python and Pip.<br>
+> Run 'python manage.py runserver' in the command line to run the website on local host.
+
+## App Info
+
+### Author [Yash Jhaveri](https://www.linkedin.com/in/yash-jhaveri-3b0882192/)

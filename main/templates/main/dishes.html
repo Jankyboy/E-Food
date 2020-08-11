@@ -1,32 +1,32 @@
 {% extends "main/layout.html" %}
 {% block content %}
+<div class="dishes">
     <!--Main layout-->
-  <main class="mt-5 pt-4">
+  <main class="mt-3 pt-4 main">
     <div class="container dark-grey-text">
       <div class="row wow fadeIn">
         <div class="col-md-6 mb-4">
           <img src="{{ object.image.url }}" class="img-fluid mt-4" alt="">
         </div>
-        <div class="col-md-6 mb-4">
+        <div class="col-md-6 mb-4 information">
           <!--Content-->
-          <div class="p-4">
+          <div class="p-4 content">
             <div class="mt-0">
-                <h5>{{ object.title }}<span class="badge badge-{{ object.label_colour }} ml-2">{{ object.labels }}</span></h5>
+                <h2><u>{{ object.title }}</u><span class="badge badge-{{ object.label_colour }} ml-2">{{ object.labels }}</span></h2>
             </div>
             <div class="lead">
               {% if object.description %}
-              <h6>{{ object.description }}</h6>
+              <h5>{{ object.description }}</h5>
               {% endif %}
-              <h5>₹ {{ object.price }} per box</h5>
-              <h5>{{ object.instructions }}</h5>
+              <h3>₹ {{ object.price }} per box of {{ object.pieces}} pieces</h3>
+              <h4>{{ object.instructions }}</h4>
             </div>
             <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">Add to cart</a>
           </div>
-          <!--Content-->
         </div>
-        <!--Grid column-->
       </div>
-      <!--Grid row-->
       <hr>
-    </main>
+    </div>
+  </main>
+</div>
 {% endblock content %}

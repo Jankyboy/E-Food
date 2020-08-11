@@ -5,11 +5,11 @@ from .forms import NewUSerForm
 
 def signup_view(request):
     if request.method == 'POST':
-         form = NewUSerForm(request.POST)
-         if form.is_valid():
-             user = form.save()
-             login(request, user)
-             return redirect('main:home')
+        form = NewUSerForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('main:home')
     else:
         form = NewUSerForm()
     return render(request, 'accounts/signup.html', { 'form': form })

@@ -14,7 +14,7 @@ class ItemAdmin(admin.ModelAdmin):
         ("Label Colour", {'fields': ["label_colour"]}),
         ("Slug", {'fields': ["slug"]}),
     ]
-    list_display = ('title','description','price','labels')
+    list_display = ('id','title','description','price','labels')
 
 class CartItemsAdmin(admin.ModelAdmin):
     fieldsets = [

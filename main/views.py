@@ -9,7 +9,6 @@ from django.views.generic import (
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.utils import timezone
 from .decorators import *
 from django.db.models import Sum
 
@@ -111,11 +110,12 @@ def pending_orders(request):
 @login_required(login_url='/accounts/login/')
 @admin_required
 def admin_dashboard(request):
-    cart_items = CartItems.objects.all()
+    cart_items = CartItems.objects.filter(ordered=True)
     pending_total = CartItems.objects.filter(ordered=True,status="Active").count()
     completed_total = CartItems.objects.filter(ordered=True,status="Delivered").count()
-    count1 = CartItems.objects.filter(ordered=True,item="1").count()
-    count2 = CartItems.objects.filter(ordered=True,item="2").count()
+    count1 = CartItems.objects.filter(ordered=True,item="6").count()
+    count2 = CartItems.objects.filter(ordered=True,item="7").count()
+    count3 = CartItems.objects.filter(ordered=True,item="8").count()
     total = 0
     for item_active in cart_items:
         total += float(item_active.item.price)
@@ -125,7 +125,7 @@ def admin_dashboard(request):
         'total' : total,
         'count1' : count1,
         'count2' : count2,
+        'count3' : count3,
     }
-    print(context)
     return render(request, 'main/admin_dashboard.html', context)
 
