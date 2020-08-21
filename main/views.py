@@ -35,13 +35,12 @@ def add_to_cart(request, slug):
 @login_required
 def get_cart_items(request):
     cart_items = CartItems.objects.filter(user=request.user,ordered=False)
-    total = 0
-    count = 0
-    total_pieces = 0
-    for cart_item in cart_items:
-        total += float(cart_item.item.price)
-        count += int(cart_item.quantity)
-        total_pieces += int(cart_item.item.pieces)
+    bill = cart_items.aggregate(Sum('item__price'))
+    number = cart_items.aggregate(Sum('quantity'))
+    pieces = cart_items.aggregate(Sum('item__pieces'))
+    total = bill.get("item__price__sum")
+    count = number.get("quantity__sum")
+    total_pieces = pieces.get("item__pieces__sum")
     context = {
         'cart_items':cart_items,
         'total': total,
@@ -72,13 +71,12 @@ def order_item(request):
 def order_details(request):
     items = CartItems.objects.filter(ordered=True,status="Active").order_by('-ordered_date')
     cart_items = CartItems.objects.filter(ordered=True,status="Delivered").order_by('-ordered_date')
-    total = 0
-    count = 0
-    total_pieces = 0
-    for item_active in items:
-        total += float(item_active.item.price)
-        count += int(item_active.quantity)
-        total_pieces += int(item_active.item.pieces)
+    bill = items.aggregate(Sum('item__price'))
+    number = items.aggregate(Sum('quantity'))
+    pieces = items.aggregate(Sum('item__pieces'))
+    total = bill.get("item__price__sum")
+    count = number.get("quantity__sum")
+    total_pieces = pieces.get("item__pieces__sum")
     context = {
         'items':items,
         'cart_items':cart_items,
@@ -116,13 +114,12 @@ def admin_dashboard(request):
     count1 = CartItems.objects.filter(ordered=True,item="6").count()
     count2 = CartItems.objects.filter(ordered=True,item="7").count()
     count3 = CartItems.objects.filter(ordered=True,item="8").count()
-    total = 0
-    for item_active in cart_items:
-        total += float(item_active.item.price)
+    total = CartItems.objects.filter(ordered=True).aggregate(Sum('item__price'))
+    income = total.get("item__price__sum")
     context = {
         'pending_total' : pending_total,
         'completed_total' : completed_total,
-        'total' : total,
+        'income' : income,
         'count1' : count1,
         'count2' : count2,
         'count3' : count3,
