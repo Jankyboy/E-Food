@@ -9,7 +9,11 @@ from .views import (
     CartDeleteView,
     order_details,
     admin_view,
+    item_list,
     pending_orders,
+    ItemCreateView,
+    ItemUpdateView,
+    ItemDeleteView,
 )
 
 app_name = "main"
@@ -17,6 +21,10 @@ app_name = "main"
 urlpatterns = [
     path('', MenuListView.as_view(), name='home'),
     path('dishes/<slug>', MenuDetailView.as_view(), name='dishes'),
+    path('item_list/', views.item_list, name='item_list'),
+    path('item/new/', ItemCreateView.as_view(), name='item-create'),
+    path('item-update/<slug>/', ItemUpdateView.as_view(), name='item-update'),
+    path('item-delete/<slug>/', ItemDeleteView.as_view(), name='item-delete'),
     path('add-to-cart/<slug>/', views.add_to_cart, name='add-to-cart'),
     path('cart/', views.get_cart_items, name='cart'),
     path('remove-from-cart/<int:pk>/', CartDeleteView.as_view(), name='remove-from-cart'),

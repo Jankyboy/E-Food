@@ -24,6 +24,19 @@
                 <div class="sidebar-brand-text mx-3">Welcome</div>
             </a>
             <hr class="sidebar-divider my-0">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:item-create' %}">
+                  <i class="fa fa-plus"></i>
+                  <span>Add Products</span>
+                </a>
+            </li>
+        
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:item_list' %}">
+                  <i class="fa fa-plus"></i>
+                  <span>View Items</span>
+                </a>
+            </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'main:admin_dashboard' %}">
                 <i class="fa fa-bandcamp"></i>
@@ -43,12 +56,6 @@
                 <a class="nav-link" href="{% url 'main:pending_orders' %}">
                 <i class="fa fa-bell"></i>
                 <span>Pending Orders</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/admin/main/item/">
-                <i class="fa fa-plus"></i>
-                <span>Add Products</span>
                 </a>
             </li>
             <li class="nav-item">

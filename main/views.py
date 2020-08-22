@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.views.generic import (
     ListView,
     DetailView,
+    CreateView,
+    UpdateView,
     DeleteView,
 )
 from django.utils import timezone
@@ -20,6 +22,38 @@ class MenuListView(ListView):
 class MenuDetailView(DetailView):
     model = Item
     template_name = 'main/dishes.html'
+
+class ItemCreateView(LoginRequiredMixin, CreateView):
+    model = Item
+    fields = ['title', 'image', 'description', 'price', 'pieces', 'instructions', 'labels', 'label_colour', 'slug']
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+class ItemUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Item
+    fields = ['title', 'image', 'description', 'price', 'pieces', 'instructions', 'labels', 'label_colour', 'slug']
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        item = self.get_object()
+        if self.request.user == item.created_by:
+            return True
+        return False
+
+class ItemDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Item
+    success_url = '/item_list'
+
+    def test_func(self):
+        item = self.get_object()
+        if self.request.user == item.created_by:
+            return True
+        return False
 
 @login_required
 def add_to_cart(request, slug):
@@ -86,7 +120,6 @@ def order_details(request):
     }
     return render(request, 'main/order_details.html', context)
 
-
 @login_required(login_url='/accounts/login/')
 @admin_required
 def admin_view(request):
@@ -95,6 +128,33 @@ def admin_view(request):
         'cart_items':cart_items,
     }
     return render(request, 'main/admin_view.html', context)
+
+@login_required(login_url='/accounts/login/')
+@admin_required
+def item_list(request):
+    items = Item.objects.filter(created_by=request.user)
+    context = {
+        'items':items
+    }
+    return render(request, 'main/item_list.html', context)
+"""
+@login_required(login_url='/accounts/login/')
+@admin_required
+def add_item(request):
+    if request.method == 'POST':
+        form = AddForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = AddForm()
+    form = AddForm()
+    items = Item.objects.all()
+    context = {
+        'form' : form,
+        'items' : items,
+    }
+    return render(request, 'main/add_item.html', context)
+"""
 
 @login_required(login_url='/accounts/login/')
 @admin_required

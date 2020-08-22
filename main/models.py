@@ -26,6 +26,7 @@ class Item(models.Model):
     labels = models.CharField(max_length=25, choices=LABELS, blank=True)
     label_colour = models.CharField(max_length=15, choices=LABEL_COLOUR, blank=True)
     slug = models.SlugField(default="sushi_name")
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -37,6 +38,16 @@ class Item(models.Model):
     
     def get_add_to_cart_url(self):
         return reverse("main:add-to-cart", kwargs={
+            'slug': self.slug
+        })
+
+    def get_item_delete_url(self):
+        return reverse("main:item-delete", kwargs={
+            'slug': self.slug
+        })
+
+    def get_update_item_url(self):
+        return reverse("main:item-update", kwargs={
             'slug': self.slug
         })
 
@@ -63,5 +74,11 @@ class CartItems(models.Model):
         return reverse("main:remove-from-cart", kwargs={
             'pk' : self.pk
         })
+
+    def update_status_url(self):
+        return reverse("main:update-status", kwargs={
+            'pk' : self.pk
+        })
+    
 
 

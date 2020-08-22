@@ -4,6 +4,7 @@ from django.db import models
 
 class ItemAdmin(admin.ModelAdmin):
     fieldsets = [
+        ("Created By", {'fields': ["created_by"]}),
         ("Title", {'fields': ["title"]}),
         ("Image", {'fields': ["image"]}),
         ("Description", {'fields': ["description"]}),
@@ -14,7 +15,7 @@ class ItemAdmin(admin.ModelAdmin):
         ("Label Colour", {'fields': ["label_colour"]}),
         ("Slug", {'fields': ["slug"]}),
     ]
-    list_display = ('id','title','description','price','labels')
+    list_display = ('id','created_by','title','description','price','labels')
 
 class CartItemsAdmin(admin.ModelAdmin):
     fieldsets = [

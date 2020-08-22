@@ -50,6 +50,20 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
+        <a class="nav-link" href="{% url 'main:item-create' %}">
+          <i class="fa fa-plus"></i>
+          <span>Add Products</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'main:item_list' %}">
+          <i class="fa fa-plus"></i>
+          <span>View Items</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" href="{% url 'main:admin_view' %}">
           <i class="fa fa-check"></i>
           <span>Completed Orders</span>
@@ -61,13 +75,6 @@
         <a class="nav-link" href="{% url 'main:pending_orders' %}">
           <i class="fa fa-bell"></i>
           <span>Pending Orders</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="/admin/main/item/">
-          <i class="fa fa-plus"></i>
-          <span>Add Products</span>
         </a>
       </li>
 
