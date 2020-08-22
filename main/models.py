@@ -76,7 +76,7 @@ class CartItems(models.Model):
         })
 
     def update_status_url(self):
-        return reverse("main:update-status", kwargs={
+        return reverse("main:update_status", kwargs={
             'pk' : self.pk
         })
     

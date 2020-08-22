@@ -18,84 +18,51 @@
 </head>
 
 <body id="page-top">
-
-  <!-- Page Wrapper -->
   <div id="wrapper">
-
-    <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-      <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'main:admin_dashboard' %}">
         <div class="sidebar-brand-text mx-3">Welcome</div>
       </a>
-
-      <!-- Divider -->
       <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'main:admin_dashboard' %}">
           <i class="fa fa-bandcamp"></i>
           <span>Dashboard</span></a>
       </li>
-
-      <!-- Divider -->
       <hr class="sidebar-divider">
-
-      <!-- Heading -->
       <div class="sidebar-heading">
         Admin Interface
       </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link" href="{% url 'main:item-create' %}">
           <i class="fa fa-plus"></i>
           <span>Add Products</span>
         </a>
       </li>
-
       <li class="nav-item">
         <a class="nav-link" href="{% url 'main:item_list' %}">
           <i class="fa fa-plus"></i>
           <span>View Items</span>
         </a>
       </li>
-
       <li class="nav-item">
         <a class="nav-link" href="{% url 'main:admin_view' %}">
           <i class="fa fa-check"></i>
           <span>Completed Orders</span>
         </a>
       </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link" href="{% url 'main:pending_orders' %}">
           <i class="fa fa-bell"></i>
           <span>Pending Orders</span>
         </a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="/admin/main/cartitems/">
-          <i class="fa fa-clipboard"></i>
-          <span>Change Order Status</span>
-        </a>
-      </li>
-
-      <!-- Divider -->
       <hr class="sidebar-divider">
-
-      <!-- Nav Item - Charts -->
       <li class="nav-item">
         <a class="nav-link">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Profile</span></a>
       </li>
-
-      <!-- Nav Item - Tables -->
       <li class="nav-item">
         <a class="nav-link" href="{% url 'main:home' %}">
           <i class="fa fa-home"></i>
@@ -107,35 +74,16 @@
             <button type="submit" class="mr-2">Logout</button>
         </form>
       </li>
-
-      <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
-
     </ul>
-    <!-- End of Sidebar -->
-
-    <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-
-      <!-- Main Content -->
       <div id="content">
-
-        <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-          <!-- Sidebar Toggle (Topbar) -->
           <h2 class="text-center">AdminPage</h3>
-          <!-- Other Nav links like logout,etc on main site -->
         </nav>
-        <!-- End of Topbar -->
-
-        <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Content Row -->
           <div class="row">
-
-            <!-- Total Earnings Card -->
             <div class="col-xl-4 col-md-4 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
@@ -152,7 +100,6 @@
               </div>
             </div>
 
-            <!-- Delivered Orders -->
             <div class="col-xl-4 col-md-4 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -169,7 +116,6 @@
               </div>
             </div>
 
-            <!-- Pending Orders -->
             <div class="col-xl-4 col-md-4 mb-4">
               <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
@@ -187,17 +133,12 @@
             </div>
           </div>
 
-          <!-- Content Row -->
-
           <div class="row">
-            <!-- Pie Chart -->
             <div class="col-xl-6 col-lg-6">
               <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Categories Bar Chart</h6>
                 </div>
-                <!-- Card Body -->
                 <div class="card-body">
                   <div class="chart-pie pt-4 pb-2">
                     <canvas id="myChart"></canvas>
@@ -205,15 +146,11 @@
                 </div>
               </div>
             </div>
-
-            <!-- Area Chart -->
             <div class="col-xl-6 col-lg-6">
               <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Categories Doughnut Chart</h6>
                 </div>
-                <!-- Card Body -->
                 <div class="card-body">
                     <canvas id="myAreaChart"></canvas>
                 </div>

@@ -137,24 +137,15 @@ def item_list(request):
         'items':items
     }
     return render(request, 'main/item_list.html', context)
-"""
-@login_required(login_url='/accounts/login/')
+
+@login_required
 @admin_required
-def add_item(request):
+def update_status(request,pk):
     if request.method == 'POST':
-        form = AddForm(request.POST)
-        if form.is_valid():
-            form.save()
-    else:
-        form = AddForm()
-    form = AddForm()
-    items = Item.objects.all()
-    context = {
-        'form' : form,
-        'items' : items,
-    }
-    return render(request, 'main/add_item.html', context)
-"""
+        status = request.POST['status']
+    cart_items = CartItems.objects.filter(ordered=True,status="Active",pk=pk)
+    cart_items.update(status=status)
+    return render(request, 'main/pending_orders.html')
 
 @login_required(login_url='/accounts/login/')
 @admin_required
@@ -171,9 +162,9 @@ def admin_dashboard(request):
     cart_items = CartItems.objects.filter(ordered=True)
     pending_total = CartItems.objects.filter(ordered=True,status="Active").count()
     completed_total = CartItems.objects.filter(ordered=True,status="Delivered").count()
-    count1 = CartItems.objects.filter(ordered=True,item="6").count()
-    count2 = CartItems.objects.filter(ordered=True,item="7").count()
-    count3 = CartItems.objects.filter(ordered=True,item="8").count()
+    count1 = CartItems.objects.filter(ordered=True,item="3").count()
+    count2 = CartItems.objects.filter(ordered=True,item="4").count()
+    count3 = CartItems.objects.filter(ordered=True,item="5").count()
     total = CartItems.objects.filter(ordered=True).aggregate(Sum('item__price'))
     income = total.get("item__price__sum")
     context = {

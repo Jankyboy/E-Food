@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>Admin Dashboard</title>
 
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -24,19 +24,6 @@
                 <div class="sidebar-brand-text mx-3">Welcome</div>
             </a>
             <hr class="sidebar-divider my-0">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'main:item-create' %}">
-                  <i class="fa fa-plus"></i>
-                  <span>Add Products</span>
-                </a>
-            </li>
-        
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'main:item_list' %}">
-                  <i class="fa fa-plus"></i>
-                  <span>View Items</span>
-                </a>
-            </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'main:admin_dashboard' %}">
                 <i class="fa fa-bandcamp"></i>
@@ -47,6 +34,18 @@
                 Admin Interface
             </div>
             <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:item-create' %}">
+                  <i class="fa fa-plus"></i>
+                  <span>Add Products</span>
+                </a>
+            </li>  
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:item_list' %}">
+                  <i class="fa fa-plus"></i>
+                  <span>View Items</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{% url 'main:admin_view' %}">
                 <i class="fa fa-check"></i>
                 <span>Completed Orders</span>
@@ -56,12 +55,6 @@
                 <a class="nav-link" href="{% url 'main:pending_orders' %}">
                 <i class="fa fa-bell"></i>
                 <span>Pending Orders</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/admin/main/cartitems/">
-                <i class="fa fa-clipboard"></i>
-                <span>Change Order Status</span>
                 </a>
             </li>
             <hr class="sidebar-divider">

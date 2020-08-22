@@ -14,6 +14,7 @@ from .views import (
     ItemCreateView,
     ItemUpdateView,
     ItemDeleteView,
+    update_status,
 )
 
 app_name = "main"
@@ -33,4 +34,5 @@ urlpatterns = [
     path('admin_view/', views.admin_view, name='admin_view'),
     path('pending_orders/', views.pending_orders, name='pending_orders'),
     path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    path('update_status/<int:pk>', views.update_status, name='update_status'),
 ]

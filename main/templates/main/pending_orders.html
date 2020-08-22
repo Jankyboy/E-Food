@@ -18,7 +18,7 @@
                             <th scope="col">Price</th>
                             <th scope="col">Total Pieces</th>
                             <th scope="col">Status</th>
-                            <th></th>
+                            <th scope="col">Change Status</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -34,13 +34,13 @@
                             <td>{{ item.item.pieces }} pieces</td>
                             <td>{{ item.status }}</td>
                             <td>
-                                <form method="POST" action="{{ object.update_status_url }}">
+                                <form method="POST" action="{% url 'main:update_status' item.id %}" style="display: flex;">
                                     {% csrf_token %}
                                     <select class="form-control" name="status">
                                         <option value="Active" selected="selected">Active</option>
                                         <option value="Delivered">Delivered</option>
                                     </select>
-                                    <button type="submit" class="btn btn-primary">Add</button>
+                                    <button type="submit" class="btn btn-primary">Change</button>
                                 </form>
                             </td>
                         </tr>
