@@ -38,10 +38,10 @@
                 <div class="card mb-3" style="height: fit-content; overflow: auto;">
                   <img src="{{ item.image.url }}" style="height: 250px;">
                     <div class="card-body">             
-                      <h5 class="text-center"><a href="{{ item.get_absolute_url }}">{{ item.title }} </a><span class="badge badge-{{ item.label_colour }}">{{ item.labels }}</span></h5>
+                      <h5 class="text-center"><a href="{% url 'main:dishes' item.slug %}">{{ item.title }} </a><span class="badge badge-{{ item.label_colour }}">{{ item.labels }}</span></h5>
                       <p class="text-center">{{ item.description }}</p>
                       <h5 class="text-center">₹ {{ item.price }}</h5>      
-                      <a href="{{ item.get_absolute_url }}" class="btn btn-info float-right">View Details</a>           
+                      <a href="{% url 'main:dishes' item.slug %}" class="btn btn-info float-right">View Details</a>           
                     </div>
                 </div>
             </div>            

@@ -51,6 +51,20 @@ class Item(models.Model):
             'slug': self.slug
         })
 
+class Reviews(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    item = models.ForeignKey(Item, on_delete = models.CASCADE)
+    rslug = models.SlugField()
+    review = models.TextField()
+    posted_on = models.DateField(default=timezone.now)
+
+    class Meta:
+        verbose_name = 'Review'
+        verbose_name_plural = 'Reviews'
+
+    def __str__(self):
+        return self.review
+
 class CartItems(models.Model):
     ORDER_STATUS = (
         ('Active', 'Active'),
@@ -67,6 +81,7 @@ class CartItems(models.Model):
     class Meta:
         verbose_name = 'Cart Item'
         verbose_name_plural = 'Cart Items'
+
     def __str__(self):
         return self.item.title
     

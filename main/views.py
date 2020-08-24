@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Item, CartItems
+from .models import Item, CartItems, Reviews
 from django.contrib import messages
 from django.views.generic import (
     ListView,
@@ -19,9 +19,27 @@ class MenuListView(ListView):
     template_name = 'main/home.html'
     context_object_name = 'menu_items'
 
-class MenuDetailView(DetailView):
-    model = Item
-    template_name = 'main/dishes.html'
+def menuDetail(request, slug):
+    item = Item.objects.filter(slug=slug).first()
+    reviews = Reviews.objects.filter(rslug=slug).order_by('-id')[:7] 
+    context = {
+        'item' : item,
+        'reviews' : reviews,
+    }
+    return render(request, 'main/dishes.html', context)
+
+@login_required
+def add_reviews(request):
+    if request.method == "POST":
+        user = request.user
+        rslug = request.POST.get("rslug")
+        item = Item.objects.get(slug=rslug)
+        review = request.POST.get("review")
+
+        reviews = Reviews(user=user, item=item, review=review, rslug=rslug)
+        reviews.save()
+        messages.success(request, "Thankyou for reviewing this product!!")
+    return redirect(f"/dishes/{item.slug}")
 
 class ItemCreateView(LoginRequiredMixin, CreateView):
     model = Item

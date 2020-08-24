@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from .views import (
     MenuListView,
-    MenuDetailView,
+    menuDetail,
     add_to_cart,
     get_cart_items,
     order_item,
@@ -15,13 +15,14 @@ from .views import (
     ItemUpdateView,
     ItemDeleteView,
     update_status,
+    add_reviews,
 )
 
 app_name = "main"
 
 urlpatterns = [
     path('', MenuListView.as_view(), name='home'),
-    path('dishes/<slug>', MenuDetailView.as_view(), name='dishes'),
+    path('dishes/<slug>', views.menuDetail, name='dishes'),
     path('item_list/', views.item_list, name='item_list'),
     path('item/new/', ItemCreateView.as_view(), name='item-create'),
     path('item-update/<slug>/', ItemUpdateView.as_view(), name='item-update'),
@@ -35,4 +36,5 @@ urlpatterns = [
     path('pending_orders/', views.pending_orders, name='pending_orders'),
     path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
     path('update_status/<int:pk>', views.update_status, name='update_status'),
+    path('postReview', views.add_reviews, name='add_reviews'),
 ]
