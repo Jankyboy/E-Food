@@ -2,6 +2,23 @@
 
 > Food E-Commerce Website where users can place orders and the admin can prepare and deliver them accordingly.<br />
 
+# Features
+
+> Signup and Login based on whether you are the owner or customer
+
+## Customer Login
+> View Products
+> Add Items to Cart
+> Order Added Cart Items
+> Add reviews to the products
+
+## Owner Login
+> Can Add New Items
+> Can Update/Delete Existing Items
+> Can keep a list of all completed and pending orders
+> Can change the order status of a particular order
+> Has Dashboard where total income,total orders completed and total pending orders can be viewed along with the graph of the most ordered products
+
 # Overview Of The Website
 
 <p align="center">Home Page</p>
