@@ -7,16 +7,16 @@
 > Signup and Login based on whether you are the owner or customer
 
 ## Customer Login
-> View Products
-> Add Items to Cart
-> Order Added Cart Items
+> View Products<br />
+> Add Items to Cart<br />
+> Order Added Cart Items<br />
 > Add reviews to the products
 
 ## Owner Login
-> Can Add New Items
-> Can Update/Delete Existing Items
-> Can keep a list of all completed and pending orders
-> Can change the order status of a particular order
+> Can Add New Items<br />
+> Can Update/Delete Existing Items<br />
+> Can keep a list of all completed and pending orders<br />
+> Can change the order status of a particular order<br />
 > Has Dashboard where total income,total orders completed and total pending orders can be viewed along with the graph of the most ordered products
 
 # Overview Of The Website
