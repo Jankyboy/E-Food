@@ -121,8 +121,8 @@ def order_item(request):
 
 @login_required
 def order_details(request):
-    items = CartItems.objects.filter(ordered=True,status="Active").order_by('-ordered_date')
-    cart_items = CartItems.objects.filter(ordered=True,status="Delivered").order_by('-ordered_date')
+    items = CartItems.objects.filter(user=request.user, ordered=True,status="Active").order_by('-ordered_date')
+    cart_items = CartItems.objects.filter(user=request.user, ordered=True,status="Delivered").order_by('-ordered_date')
     bill = items.aggregate(Sum('item__price'))
     number = items.aggregate(Sum('quantity'))
     pieces = items.aggregate(Sum('item__pieces'))
@@ -141,7 +141,7 @@ def order_details(request):
 @login_required(login_url='/accounts/login/')
 @admin_required
 def admin_view(request):
-    cart_items = CartItems.objects.filter(ordered=True,status="Delivered").order_by('-ordered_date')
+    cart_items = CartItems.objects.filter(item__created_by=request.user, ordered=True,status="Delivered").order_by('-ordered_date')
     context = {
         'cart_items':cart_items,
     }
@@ -161,14 +161,16 @@ def item_list(request):
 def update_status(request,pk):
     if request.method == 'POST':
         status = request.POST['status']
-    cart_items = CartItems.objects.filter(ordered=True,status="Active",pk=pk)
-    cart_items.update(status=status)
+    cart_items = CartItems.objects.filter(item__created_by=request.user, ordered=True,status="Active",pk=pk)
+    delivery_date=timezone.now()
+    if status == 'Delivered':
+        cart_items.update(status=status, delivery_date=delivery_date)
     return render(request, 'main/pending_orders.html')
 
 @login_required(login_url='/accounts/login/')
 @admin_required
 def pending_orders(request):
-    items = CartItems.objects.filter(ordered=True,status="Active").order_by('-ordered_date')
+    items = CartItems.objects.filter(item__created_by=request.user, ordered=True,status="Active").order_by('-ordered_date')
     context = {
         'items':items,
     }
@@ -177,13 +179,13 @@ def pending_orders(request):
 @login_required(login_url='/accounts/login/')
 @admin_required
 def admin_dashboard(request):
-    cart_items = CartItems.objects.filter(ordered=True)
-    pending_total = CartItems.objects.filter(ordered=True,status="Active").count()
-    completed_total = CartItems.objects.filter(ordered=True,status="Delivered").count()
-    count1 = CartItems.objects.filter(ordered=True,item="3").count()
-    count2 = CartItems.objects.filter(ordered=True,item="4").count()
-    count3 = CartItems.objects.filter(ordered=True,item="5").count()
-    total = CartItems.objects.filter(ordered=True).aggregate(Sum('item__price'))
+    cart_items = CartItems.objects.filter(item__created_by=request.user, ordered=True)
+    pending_total = CartItems.objects.filter(item__created_by=request.user, ordered=True,status="Active").count()
+    completed_total = CartItems.objects.filter(item__created_by=request.user, ordered=True,status="Delivered").count()
+    count1 = CartItems.objects.filter(item__created_by=request.user, ordered=True,item="3").count()
+    count2 = CartItems.objects.filter(item__created_by=request.user, ordered=True,item="4").count()
+    count3 = CartItems.objects.filter(item__created_by=request.user, ordered=True,item="5").count()
+    total = CartItems.objects.filter(item__created_by=request.user, ordered=True).aggregate(Sum('item__price'))
     income = total.get("item__price__sum")
     context = {
         'pending_total' : pending_total,
