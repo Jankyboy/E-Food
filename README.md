@@ -2,6 +2,13 @@
 
 > Food E-Commerce Website where users can place orders and the admin can prepare and deliver them accordingly.<br />
 
+# Requirements
+
+> Python 3.7.7<br />
+> Django 3.0.4<br />
+> Django-Crispy-Forms 1.9.0<br />
+> Pillow 7.0.0<br />
+
 # Features
 
 > Signup and Login based on whether you are the owner or customer
