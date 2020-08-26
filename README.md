@@ -36,7 +36,7 @@
 
 <p align="center">Dish Detail Page</p>
 <p align="center">
- <img src="./media/5.png">
+ <img src="./media/reviews.png">
 </p>
 
 <p align="center">Login</p>
@@ -71,17 +71,27 @@
 
 <p align="center">Admin Dashboard</p>
 <p align="center">
- <img src="./media/10.png">
+ <img src="./media/dashboard.png">
+</p>
+
+<p align="center">Admin Item List</p>
+<p align="center">
+ <img src="./media/all_items.png">
+</p>
+
+<p align="center">Admin Add New Item</p>
+<p align="center">
+ <img src="./media/add_item.png">
 </p>
 
 <p align="center">Admin Completed Orders</p>
 <p align="center">
- <img src="./media/11.png">
+ <img src="./media/completed.png">
 </p>
 
 <p align="center">Admin Pending Orders</p>
 <p align="center">
- <img src="./media/12.png">
+ <img src="./media/pending.png">
 </p>
 
 > Clone the repository.<br>
